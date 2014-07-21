@@ -12,8 +12,10 @@ LWIP_CORE_SRC := $(LWIP_SRC)/core
 LWIP_INCLUDES := $(LWIP_SRC)/include
 LWIP_NETIF_SRC := $(LWIP_SRC)/netif
 
-LWIP_ANDROID_PORT_INCLUDES := ports/android/include
+LWIP_ANDROID_PORT := ports/android
+LWIP_ANDROID_PORT_INCLUDES := $(LWIP_ANDROID_PORT)/include
 
+LOCAL_CFLAGS := -DIPv4
 LOCAL_C_INCLUDES := $(LWIP_INCLUDES) $(LWIP_INCLUDES)/ipv4 $(LWIP_ANDROID_PORT_INCLUDES)
 
 LOCAL_MODULE := lwip-android
@@ -44,8 +46,7 @@ LWIP_CORE_SRC_FILES := $(LWIP_CORE_SRC)/def.c $(LWIP_CORE_SRC)/dhcp.c $(LWIP_COR
     $(LWIP_CORE_SRC)/mem.c $(LWIP_CORE_SRC)/memp.c $(LWIP_CORE_SRC)/netif.c $(LWIP_CORE_SRC)/pbuf.c $(LWIP_CORE_SRC)/raw.c \
     $(LWIP_CORE_SRC)/stats.c $(LWIP_CORE_SRC)/sys.c $(LWIP_CORE_SRC)/tcp_in.c $(LWIP_CORE_SRC)/tcp_out.c \
     $(LWIP_CORE_SRC)/tcp.c $(LWIP_CORE_SRC)/timers.c $(LWIP_CORE_SRC)/udp.c \
-    $(LWIP_CORE_IPV4_SRC_FILES) \
-    $(LWIP_CORE_SNMP_SRC_FILES)
+    $(LWIP_CORE_IPV4_SRC_FILES) $(LWIP_CORE_SNMP_SRC_FILES)
 
 # Source code for PPP support
 LWIP_PPP_SRC := $(LWIP_NETIF_SRC)/ppp
@@ -57,11 +58,18 @@ LWIP_NETIF_PPP_SRC_FILES := $(LWIP_PPP_SRC)/auth.c $(LWIP_PPP_SRC)/chap.c $(LWIP
 LWIP_NETIF_SRC_FILES := $(LWIP_NETIF_SRC)/etharp.c $(LWIP_NETIF_SRC)/ethernetif.c $(LWIP_NETIF_SRC)/slipif.c \
     $(LWIP_NETIF_PPP_SRC_FILES)
 
+# Android port source code
+LWIP_ANDROID_PORT_NETIF_SRC_FILES := $(LWIP_ANDROID_PORT)/netif/tapif.c $(LWIP_ANDROID_PORT)/netif/tunif.c \
+    $(LWIP_ANDROID_PORT)/netif/unixif.c $(LWIP_ANDROID_PORT)/netif/list.c $(LWIP_ANDROID_PORT)/netif/tcpdump.c
+LWIP_ANDROID_PORT_SRC_FILES := $(LWIP_ANDROID_PORT)/lwip_chksum.c $(LWIP_ANDROID_PORT)/perf.c $(LWIP_ANDROID_PORT)/sys_arch.c \
+    $(LWIP_ANDROID_PORT_NETIF_SRC_FILES)
+
 # Required source code for the lwIP static library on Android
 LOCAL_SRC_FILES := \
     $(LWIP_API_SRC_FILES) \
     $(LWIP_CORE_SRC_FILES) \
-    $(LWIP_NETIF_SRC_FILES)
+    $(LWIP_NETIF_SRC_FILES) \
+    $(LWIP_ANDROID_PORT_SRC_FILES)
 
 include $(BUILD_STATIC_LIBRARY)
 
