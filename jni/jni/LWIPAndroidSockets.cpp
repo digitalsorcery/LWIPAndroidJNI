@@ -37,28 +37,14 @@
 extern "C" {
 #endif
 
-/**
- * Package: com.digitalsorcery.LWIPAndroidJNI
- * Class:   Sockets
- * Method:  socketInit
- * Native:  void lwip_socket_init(void);
- */
-JNIEXPORT void JNICALL
-Java_com_digitalsorcery_jni_lwip_Sockets_socketInit (JNIEnv* env, jobject obj)
-{
-    lwip_socket_init ();
-    return;
-}
-
 // int lwip_accept(int s, struct sockaddr *addr, socklen_t *addrlen);
 
 // int lwip_bind(int s, const struct sockaddr *name, socklen_t namelen);
 
 /**
- * Package: com.digitalsorcery.LWIPAndroidJNI
+ * Package: com.digitalsorcery.jni.lwip
  * Class:   Sockets
  * Method:  shutdown
- * Native:  int lwip_shutdown(int s, int how);
  */
 JNIEXPORT int JNICALL
 Java_com_digitalsorcery_jni_lwip_Sockets_shutdown (JNIEnv* env, jobject obj, jint s, jint how)
@@ -75,10 +61,9 @@ Java_com_digitalsorcery_jni_lwip_Sockets_shutdown (JNIEnv* env, jobject obj, jin
 // int lwip_setsockopt (int s, int level, int optname, const void *optval, socklen_t optlen);
 
 /**
- * Package: com.digitalsorcery.LWIPAndroidJNI
+ * Package: com.digitalsorcery.jni.lwip
  * Class:   Sockets
  * Method:  close
- * Native:  int lwip_close(int s);
  */
 JNIEXPORT int JNICALL
 Java_com_digitalsorcery_jni_lwip_Sockets_close (JNIEnv* env, jobject obj, jint s)
@@ -89,10 +74,9 @@ Java_com_digitalsorcery_jni_lwip_Sockets_close (JNIEnv* env, jobject obj, jint s
 // int lwip_connect(int s, const struct sockaddr *name, socklen_t namelen);
 
 /**
- * Package: com.digitalsorcery.LWIPAndroidJNI
+ * Package: com.digitalsorcery.jni.lwip
  * Class:   Sockets
  * Method:  listen
- * Native:  int lwip_listen(int s, int backlog);
  */
 JNIEXPORT int JNICALL
 Java_com_digitalsorcery_jni_lwip_Sockets_listen (JNIEnv* env, jobject obj, jint s, jint backlog)
@@ -111,10 +95,9 @@ Java_com_digitalsorcery_jni_lwip_Sockets_listen (JNIEnv* env, jobject obj, jint 
 // int lwip_sendto(int s, const void *dataptr, size_t size, int flags, const struct sockaddr *to, socklen_t tolen);
 
 /**
- * Package: com.digitalsorcery.LWIPAndroidJNI
+ * Package: com.digitalsorcery.jni.lwip
  * Class:   Sockets
  * Method:  socket
- * Native:  int lwip_socket(int domain, int type, int protocol);
  */
 JNIEXPORT int JNICALL
 Java_com_digitalsorcery_jni_lwip_Sockets_socket (JNIEnv* env, jobject obj, jint domain, jint type, jint protocol)

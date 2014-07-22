@@ -31,6 +31,7 @@
 #include <jni.h>
 #include <android/log.h>
 
+#include "androidenetif.h"
 #include "lwip/netifapi.h"
 #include "ipv4/lwip/inet.h"
 
@@ -47,6 +48,7 @@ public:
     {
     }
 
+    /* REMOVE
     static err_t initCallback (struct netif* netif)
     {
         err_t result (-1);
@@ -64,6 +66,7 @@ public:
         }
         return result;
     }
+    */
 
     static err_t inputCallback (struct pbuf* p, struct netif* netif)
     {
@@ -135,7 +138,7 @@ Java_com_digitalsorcery_jni_lwip_NetIFAPI_addInterface (JNIEnv* env, jobject obj
     inet_aton (gw_nativeHostAddress, &gatewayAddress);
     env->ReleaseStringUTFChars (gw_hostAddress, gw_nativeHostAddress);
 
-    return (int)netifapi_netif_add (&interface->m_netInterface, &ipAddress, &netmaskAddress, &gatewayAddress, (void*)interface, NetIF::initCallback, NetIF::inputCallback);
+    return (int)netifapi_netif_add (&interface->m_netInterface, &ipAddress, &netmaskAddress, &gatewayAddress, (void*)interface, androidenetif_init, NetIF::inputCallback);
 }
 
 /**

@@ -12,15 +12,6 @@ public class Sockets {
     public static int SOCK_DGRAM = 2;
     public static int SOCK_RAW = 3;
 
-    /**
-     * Name:        socketInit
-     *
-     * Description: Initializes the lwIP socket library.
-     *
-     * Returns:     None.
-     */
-    public static native void socketInit();
-
     // TODO: accept
 
     // TODO: bind

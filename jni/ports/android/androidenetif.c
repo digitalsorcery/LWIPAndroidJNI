@@ -65,8 +65,7 @@ static void  androidenetif_input (struct netif* netif);
  * @param netif the already initialized lwip network interface structure
  *        for this androidenetif
  */
-static void
-low_level_init(struct netif *netif)
+static void low_level_init (struct netif* netif)
 {
     struct androidenetif* androidenetif = netif->state;
 
@@ -221,8 +220,7 @@ static struct pbuf* low_level_input (struct netif* netif)
  *
  * @param netif the lwip network interface structure for this androidenetif
  */
-static void
-androidenetif_input (struct netif* netif)
+static void androidenetif_input (struct netif* netif)
 {
     struct androidenetif* androidenetif;
     struct eth_hdr* ethhdr;
