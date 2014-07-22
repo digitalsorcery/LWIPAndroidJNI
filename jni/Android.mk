@@ -61,8 +61,8 @@ LWIP_NETIF_SRC_FILES := $(LWIP_NETIF_SRC)/etharp.c $(LWIP_NETIF_SRC)/ethernetif.
 # Android port source code
 LWIP_ANDROID_PORT_NETIF_SRC_FILES := $(LWIP_ANDROID_PORT)/netif/tapif.c $(LWIP_ANDROID_PORT)/netif/tunif.c \
     $(LWIP_ANDROID_PORT)/netif/unixif.c $(LWIP_ANDROID_PORT)/netif/list.c $(LWIP_ANDROID_PORT)/netif/tcpdump.c
-LWIP_ANDROID_PORT_SRC_FILES := $(LWIP_ANDROID_PORT)/lwip_chksum.c $(LWIP_ANDROID_PORT)/perf.c $(LWIP_ANDROID_PORT)/sys_arch.c \
-    $(LWIP_ANDROID_PORT_NETIF_SRC_FILES)
+LWIP_ANDROID_PORT_SRC_FILES := $(LWIP_ANDROID_PORT)/androidenetif.c $(LWIP_ANDROID_PORT)/log.c $(LWIP_ANDROID_PORT)/lwip_chksum.c \
+    $(LWIP_ANDROID_PORT)/perf.c $(LWIP_ANDROID_PORT)/sys_arch.c $(LWIP_ANDROID_PORT_NETIF_SRC_FILES)
 
 # Required source code for the lwIP static library on Android
 LOCAL_SRC_FILES := \
@@ -79,6 +79,15 @@ include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 
+LWIP_SRC := lwip-1.4.1/src
+LWIP_INCLUDES := $(LWIP_SRC)/include
+
+LWIP_ANDROID_PORT := ports/android
+LWIP_ANDROID_PORT_INCLUDES := $(LWIP_ANDROID_PORT)/include
+
+LOCAL_LDLIBS := -llog
+LOCAL_C_INCLUDES := $(LWIP_INCLUDES) $(LWIP_INCLUDES)/ipv4 $(LWIP_ANDROID_PORT_INCLUDES) jni/
+
 LOCAL_MODULE := lwip-android-jni
 
 LOCAL_SRC_FILES := jni/LWIPAndroidAPI.cpp \
@@ -86,7 +95,8 @@ LOCAL_SRC_FILES := jni/LWIPAndroidAPI.cpp \
     jni/LWIPAndroidNetDB.cpp \
     jni/LWIPAndroidNetIFAPI.cpp \
     jni/LWIPAndroidSockets.cpp \
-    jni/LWIPAndroidSys.cpp
+    jni/LWIPAndroidSys.cpp \
+    jni/LWIPAndroidTcpIp.cpp
 
 LOCAL_STATIC_LIBRARIES := lwip-android
 

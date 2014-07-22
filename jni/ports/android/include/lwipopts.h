@@ -36,6 +36,253 @@
 #include <sys/select.h>
 
 /*
+   ---------------------------------------
+   ---------- Debugging options ----------
+   ---------------------------------------
+*/
+
+#define LWIP_DEBUG                      1
+
+/**
+ * ETHARP_DEBUG: Enable debugging in etharp.c.
+ */
+#ifndef ETHARP_DEBUG
+#define ETHARP_DEBUG                    LWIP_DBG_ON
+#endif
+
+/**
+ * NETIF_DEBUG: Enable debugging in netif.c.
+ */
+#ifndef NETIF_DEBUG
+#define NETIF_DEBUG                     LWIP_DBG_ON
+#endif
+
+/**
+ * PBUF_DEBUG: Enable debugging in pbuf.c.
+ */
+#ifndef PBUF_DEBUG
+#define PBUF_DEBUG                      LWIP_DBG_ON
+#endif
+
+/**
+ * API_LIB_DEBUG: Enable debugging in api_lib.c.
+ */
+#ifndef API_LIB_DEBUG
+#define API_LIB_DEBUG                   LWIP_DBG_ON
+#endif
+
+/**
+ * API_MSG_DEBUG: Enable debugging in api_msg.c.
+ */
+#ifndef API_MSG_DEBUG
+#define API_MSG_DEBUG                   LWIP_DBG_ON
+#endif
+
+/**
+ * SOCKETS_DEBUG: Enable debugging in sockets.c.
+ */
+#ifndef SOCKETS_DEBUG
+#define SOCKETS_DEBUG                   LWIP_DBG_ON
+#endif
+
+/**
+ * ICMP_DEBUG: Enable debugging in icmp.c.
+ */
+#ifndef ICMP_DEBUG
+#define ICMP_DEBUG                      LWIP_DBG_ON
+#endif
+
+/**
+ * IGMP_DEBUG: Enable debugging in igmp.c.
+ */
+#ifndef IGMP_DEBUG
+#define IGMP_DEBUG                      LWIP_DBG_ON
+#endif
+
+/**
+ * INET_DEBUG: Enable debugging in inet.c.
+ */
+#ifndef INET_DEBUG
+#define INET_DEBUG                      LWIP_DBG_ON
+#endif
+
+/**
+ * IP_DEBUG: Enable debugging for IP.
+ */
+#ifndef IP_DEBUG
+#define IP_DEBUG                        LWIP_DBG_ON
+#endif
+
+/**
+ * IP_REASS_DEBUG: Enable debugging in ip_frag.c for both frag & reass.
+ */
+#ifndef IP_REASS_DEBUG
+#define IP_REASS_DEBUG                  LWIP_DBG_ON
+#endif
+
+/**
+ * RAW_DEBUG: Enable debugging in raw.c.
+ */
+#ifndef RAW_DEBUG
+#define RAW_DEBUG                       LWIP_DBG_ON
+#endif
+
+/**
+ * MEM_DEBUG: Enable debugging in mem.c.
+ */
+#ifndef MEM_DEBUG
+#define MEM_DEBUG                       LWIP_DBG_ON
+#endif
+
+/**
+ * MEMP_DEBUG: Enable debugging in memp.c.
+ */
+#ifndef MEMP_DEBUG
+#define MEMP_DEBUG                      LWIP_DBG_ON
+#endif
+
+/**
+ * SYS_DEBUG: Enable debugging in sys.c.
+ */
+#ifndef SYS_DEBUG
+#define SYS_DEBUG                       LWIP_DBG_ON
+#endif
+
+/**
+ * TIMERS_DEBUG: Enable debugging in timers.c.
+ */
+#ifndef TIMERS_DEBUG
+#define TIMERS_DEBUG                    LWIP_DBG_ON
+#endif
+
+/**
+ * TCP_DEBUG: Enable debugging for TCP.
+ */
+#ifndef TCP_DEBUG
+#define TCP_DEBUG                       LWIP_DBG_ON
+#endif
+
+/**
+ * TCP_INPUT_DEBUG: Enable debugging in tcp_in.c for incoming debug.
+ */
+#ifndef TCP_INPUT_DEBUG
+#define TCP_INPUT_DEBUG                 LWIP_DBG_ON
+#endif
+
+/**
+ * TCP_FR_DEBUG: Enable debugging in tcp_in.c for fast retransmit.
+ */
+#ifndef TCP_FR_DEBUG
+#define TCP_FR_DEBUG                    LWIP_DBG_ON
+#endif
+
+/**
+ * TCP_RTO_DEBUG: Enable debugging in TCP for retransmit
+ * timeout.
+ */
+#ifndef TCP_RTO_DEBUG
+#define TCP_RTO_DEBUG                   LWIP_DBG_ON
+#endif
+
+/**
+ * TCP_CWND_DEBUG: Enable debugging for TCP congestion window.
+ */
+#ifndef TCP_CWND_DEBUG
+#define TCP_CWND_DEBUG                  LWIP_DBG_ON
+#endif
+
+/**
+ * TCP_WND_DEBUG: Enable debugging in tcp_in.c for window updating.
+ */
+#ifndef TCP_WND_DEBUG
+#define TCP_WND_DEBUG                   LWIP_DBG_ON
+#endif
+
+/**
+ * TCP_OUTPUT_DEBUG: Enable debugging in tcp_out.c output functions.
+ */
+#ifndef TCP_OUTPUT_DEBUG
+#define TCP_OUTPUT_DEBUG                LWIP_DBG_ON
+#endif
+
+/**
+ * TCP_RST_DEBUG: Enable debugging for TCP with the RST message.
+ */
+#ifndef TCP_RST_DEBUG
+#define TCP_RST_DEBUG                   LWIP_DBG_ON
+#endif
+
+/**
+ * TCP_QLEN_DEBUG: Enable debugging for TCP queue lengths.
+ */
+#ifndef TCP_QLEN_DEBUG
+#define TCP_QLEN_DEBUG                  LWIP_DBG_ON
+#endif
+
+/**
+ * UDP_DEBUG: Enable debugging in UDP.
+ */
+#ifndef UDP_DEBUG
+#define UDP_DEBUG                       LWIP_DBG_ON
+#endif
+
+/**
+ * TCPIP_DEBUG: Enable debugging in tcpip.c.
+ */
+#ifndef TCPIP_DEBUG
+#define TCPIP_DEBUG                     LWIP_DBG_ON
+#endif
+
+/**
+ * PPP_DEBUG: Enable debugging for PPP.
+ */
+#ifndef PPP_DEBUG
+#define PPP_DEBUG                       LWIP_DBG_ON
+#endif
+
+/**
+ * SLIP_DEBUG: Enable debugging in slipif.c.
+ */
+#ifndef SLIP_DEBUG
+#define SLIP_DEBUG                      LWIP_DBG_ON
+#endif
+
+/**
+ * DHCP_DEBUG: Enable debugging in dhcp.c.
+ */
+#ifndef DHCP_DEBUG
+#define DHCP_DEBUG                      LWIP_DBG_ON
+#endif
+
+/**
+ * AUTOIP_DEBUG: Enable debugging in autoip.c.
+ */
+#ifndef AUTOIP_DEBUG
+#define AUTOIP_DEBUG                    LWIP_DBG_ON
+#endif
+
+/**
+ * SNMP_MSG_DEBUG: Enable debugging for SNMP messages.
+ */
+#ifndef SNMP_MSG_DEBUG
+#define SNMP_MSG_DEBUG                  LWIP_DBG_ON
+#endif
+
+/**
+ * SNMP_MIB_DEBUG: Enable debugging for SNMP MIBs.
+ */
+#ifndef SNMP_MIB_DEBUG
+#define SNMP_MIB_DEBUG                  LWIP_DBG_ON
+#endif
+
+/**
+ * DNS_DEBUG: Enable debugging for DNS.
+ */
+#ifndef DNS_DEBUG
+#define DNS_DEBUG                       LWIP_DBG_ON
+#endif
+
+/*
    -----------------------------------------------
    ---------- Platform specific locking ----------
    -----------------------------------------------
@@ -65,13 +312,13 @@
  *    4 byte alignment -> #define MEM_ALIGNMENT 4
  *    2 byte alignment -> #define MEM_ALIGNMENT 2
  */
-#define MEM_ALIGNMENT                   1
+#define MEM_ALIGNMENT                   4
 
 /**
  * MEM_SIZE: the size of the heap memory. If the application will send
  * a lot of data that needs to be copied, this should be set high.
  */
-#define MEM_SIZE                        1600
+#define MEM_SIZE                        4194304
 
 /*
    ------------------------------------------------
@@ -83,44 +330,44 @@
  * If the application sends a lot of data out of ROM (or other static memory),
  * this should be set high.
  */
-#define MEMP_NUM_PBUF                   16
+#define MEMP_NUM_PBUF                   128
 
 /**
  * MEMP_NUM_RAW_PCB: Number of raw connection PCBs
  * (requires the LWIP_RAW option)
  */
-#define MEMP_NUM_RAW_PCB                4
+#define MEMP_NUM_RAW_PCB                32
 
 /**
  * MEMP_NUM_UDP_PCB: the number of UDP protocol control blocks. One
  * per active UDP "connection".
  * (requires the LWIP_UDP option)
  */
-#define MEMP_NUM_UDP_PCB                4
+#define MEMP_NUM_UDP_PCB                32
 
 /**
  * MEMP_NUM_TCP_PCB: the number of simulatenously active TCP connections.
  * (requires the LWIP_TCP option)
  */
-#define MEMP_NUM_TCP_PCB                4
+#define MEMP_NUM_TCP_PCB                32
 
 /**
  * MEMP_NUM_TCP_PCB_LISTEN: the number of listening TCP connections.
  * (requires the LWIP_TCP option)
  */
-#define MEMP_NUM_TCP_PCB_LISTEN         4
+#define MEMP_NUM_TCP_PCB_LISTEN         32
 
 /**
  * MEMP_NUM_TCP_SEG: the number of simultaneously queued TCP segments.
  * (requires the LWIP_TCP option)
  */
-#define MEMP_NUM_TCP_SEG                16
+#define MEMP_NUM_TCP_SEG                128
 
 /**
  * MEMP_NUM_REASSDATA: the number of simultaneously IP packets queued for
  * reassembly (whole packets, not fragments!)
  */
-#define MEMP_NUM_REASSDATA              1
+#define MEMP_NUM_REASSDATA              4
 
 /**
  * MEMP_NUM_ARP_QUEUE: the number of simulateously queued outgoing
@@ -128,44 +375,44 @@
  * their destination address) to finish.
  * (requires the ARP_QUEUEING option)
  */
-#define MEMP_NUM_ARP_QUEUE              2
+#define MEMP_NUM_ARP_QUEUE              16
 
 /**
  * MEMP_NUM_SYS_TIMEOUT: the number of simulateously active timeouts.
  * (requires NO_SYS==0)
  */
-#define MEMP_NUM_SYS_TIMEOUT            3
+#define MEMP_NUM_SYS_TIMEOUT            24
 
 /**
  * MEMP_NUM_NETBUF: the number of struct netbufs.
  * (only needed if you use the sequential API, like api_lib.c)
  */
-#define MEMP_NUM_NETBUF                 2
+#define MEMP_NUM_NETBUF                 16
 
 /**
  * MEMP_NUM_NETCONN: the number of struct netconns.
  * (only needed if you use the sequential API, like api_lib.c)
  */
-#define MEMP_NUM_NETCONN                4
+#define MEMP_NUM_NETCONN                32
 
 /**
  * MEMP_NUM_TCPIP_MSG_API: the number of struct tcpip_msg, which are used
  * for callback/timeout API communication.
  * (only needed if you use tcpip.c)
  */
-#define MEMP_NUM_TCPIP_MSG_API          8
+#define MEMP_NUM_TCPIP_MSG_API          64
 
 /**
  * MEMP_NUM_TCPIP_MSG_INPKT: the number of struct tcpip_msg, which are used
  * for incoming packets.
  * (only needed if you use tcpip.c)
  */
-#define MEMP_NUM_TCPIP_MSG_INPKT        8
+#define MEMP_NUM_TCPIP_MSG_INPKT        64
 
 /**
  * PBUF_POOL_SIZE: the number of buffers in the pbuf pool.
  */
-#define PBUF_POOL_SIZE                  8
+#define PBUF_POOL_SIZE                  64
 
 /*
    ---------------------------------
@@ -405,5 +652,12 @@
 
 
 /* Misc */
+
+/*
+   ------------------------------------------------
+   ---------- Network Interfaces options ----------
+   ------------------------------------------------
+*/
+#define LWIP_NETIF_API                  1
 
 #endif /* __LWIPOPTS_H__ */

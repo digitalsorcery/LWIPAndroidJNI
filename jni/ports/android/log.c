@@ -24,18 +24,20 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  *
+ * This file is *NOT* part of the lwIP TCP/IP stack.
+ *
  * Author: Kory Herzinger <digisorcery@gmail.com>
  *
  */
 
-#include <jni.h>
+#include <android/log.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-// TODO
-
-#ifdef __cplusplus
+void aprintf (const char* format, ...)
+{
+    char buffer [1024];
+    va_list args;
+    va_start (args, format);
+    vsnprintf(buffer, 1024, format, args);
+    __android_log_print(ANDROID_LOG_VERBOSE, "com.digitalsorcery.jni.lwip", "%s", buffer);
+    va_end (args);
 }
-#endif

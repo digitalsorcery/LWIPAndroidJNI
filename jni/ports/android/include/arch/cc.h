@@ -80,11 +80,19 @@ typedef unsigned long mem_ptr_t;
 /* prototypes for printf() and abort() */
 #include <stdio.h>
 #include <stdlib.h>
+extern void aprintf (const char* format, ...);
 /* Plaform specific diagnostic output */
+#define LWIP_PLATFORM_DIAG(x)   do {aprintf x;} while(0)
+/*
 #define LWIP_PLATFORM_DIAG(x)	do {printf x;} while(0)
+*/
 
+#define LWIP_PLATFORM_ASSERT(x) do {aprintf("Assertion \"%s\" failed at line %d in %s\n", \
+                                     x, __LINE__, __FILE__); fflush(NULL); abort();} while(0)
+/*
 #define LWIP_PLATFORM_ASSERT(x) do {printf("Assertion \"%s\" failed at line %d in %s\n", \
                                      x, __LINE__, __FILE__); fflush(NULL); abort();} while(0)
+*/
 
 #define LWIP_RAND() ((u32_t)rand())
 

@@ -29,12 +29,25 @@
  */
 
 #include <jni.h>
+#include <android/log.h>
+
+#include "lwip/tcpip.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-// TODO
+/**
+ * Package: com.digitalsorcery.jni.lwip
+ * Class:   TcpIp
+ * Method:  initializeTcpIp
+ */
+JNIEXPORT void JNICALL
+Java_com_digitalsorcery_jni_lwip_TcpIp_initializeTcpIp (JNIEnv* env, jobject obj)
+{
+    tcpip_init (NULL, NULL);
+    return;
+}
 
 #ifdef __cplusplus
 }
